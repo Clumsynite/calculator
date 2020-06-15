@@ -6,16 +6,16 @@ function divide(a,b){return a/b;}
 function operator(a,b,c){
     switch(c){
         case '+':
-            add(a,b);
+            return add(a,b);
             break;
         case '-':
-            subtract(a,b);
+            return subtract(a,b);
             break;
-        case '+':
-            multiply(a,b);
+        case '*':
+            return multiply(a,b);
             break;
-        case '+':
-            divide(a,b);
+        case '/':
+            return divide(a,b);
             break;
         default:
             return ;
