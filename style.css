@@ -12,11 +12,10 @@ button:focus {
 }
 #buttons {
     display: inline-block;
-    background-color: grey;
+    background-color: #cccccc;
     margin: 10px;
     width: 240px;
     height: 245px;
-
 }
 #numericButtons {
     display: grid;
@@ -53,11 +52,13 @@ button:focus {
     background-color: #1f1f1f;
     color: white;
     font-size: x-large;
+    border: 1px solid grey;
 }
 .operateBtn {
     background-color: #1f1f1f;
     color: white;
     font-size: x-large;
+    border: 1px solid grey;
 }
 #equals {
     background-color: #1461ff;
@@ -76,15 +77,19 @@ button:focus {
 #displayScreen {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    width: 234px;
+    width: 240px;
     height: 50px;
-    border: 2px solid red;
-    margin: 12px;
-    margin-bottom: -10px;
-    justify-content: right;
+    background-color: #a6a6a6;
+    color: white;
+    margin: 10px;
+    margin-bottom: -9px;
 }
 #digits {
-    float: right;
-    font-size: 18px;
-    padding-right: 5px;
+    font-size: 20px;
+    padding: 2px 5px;
+    justify-self: end;
+}
+#calculation {
+    padding-right: 10px;
+    justify-self: end;
 }
