@@ -19,7 +19,7 @@ function operator(a,b,c){
     }
 }
 
-function write(btn){
+function writeNumber(btn){
     if(digits.textContent.length<=10){
         if(digits.textContent==0){
             digits.textContent=btn.id;
@@ -29,23 +29,32 @@ function write(btn){
         }
     }
 }
-function clearOne(){
+function backSpace(){
     if(digits.textContent.length>1){digits.textContent = (digits.textContent.substring(0,digits.textContent.length-1))} else{digits.textContent = 0};
 }
-function ngative(){
+function negative(){
     if(digits.textContent.startsWith('-')){
         digits.textContent = digits.textContent.replace('-','');
     }else {
         digits.textContent = '-'+digits.textContent;
     }
 }
+function decimal(){
+    if(digits.textContent.endsWith('.')){
+        digits.textContent = digits.textContent.replace('.','');
+    }else if(digits.textContent.indexOf('.')<1){
+        digits.textContent =digits.textContent + '.';
+    }
+}
 function calc(){
     let buttons = document.querySelectorAll('button');
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-            if((btn.id).length==1){write(btn);}  
-            if(btn.id==='backspace'){clearOne();}  
-            if(btn.id==='neg'){ngative();}
+            if((btn.id).length==1){writeNumber(btn);}  
+            if(btn.id==='backspace'){backSpace();}  
+            if(btn.id==='neg'){negative();}
+            if(btn.id==='decimal'){decimal();}
+            if(btn.id==='decimal'){decimal();}
         });
     });
 }
