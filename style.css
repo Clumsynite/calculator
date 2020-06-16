@@ -2,12 +2,20 @@
     font-family: monospace;
     margin: 0px;
 }
+button:focus {
+    outline: none;
+}
+#buttons {
+    display: inline-block;
+    background-color: grey;
+    margin: 10px;
+}
 #numericButtons {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows:auto;
-    width: 200px;
-    height: 140px;
+    width: 240px;
+    height: 200px;
     max-width: 560px;
     max-height: 720px;
 }
@@ -18,16 +26,52 @@
     font-size: 20px;
     padding: 10px;
 }
+.numberBtn:hover {
+    opacity: 0.6;
+}
+.numberBtn:active {
+    opacity: 0.8;
+}
 #editButtons {
     margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 240px;
+    height: 45px;
+    max-width: 560px;
+    max-height: 720px;
 }
 .editBtn {
-    background-color: grey;
+    background-color: #1f1f1f;
     color: white;
-    width: 40px;
-    height: 40px;
     font-size: x-large;
-
+}
+.editBtn:hover {
+    opacity: 0.7;
+}
+.editBtn:active {
+    opacity: 0.8;
+}
+.operateBtn {
+    background-color: #1f1f1f;
+    color: white;
+    font-size: x-large;
+}
+.operateBtn:hover {
+    opacity: 0.7;
+}
+.operateBtn:active {
+    opacity: 0.8;
+}
+#equals {
+    background-color: #1461ff;
+    opacity: 0.75;
+}
+#equals:hover {
+    opacity: 1;
+}
+#equals:active {
+    opacity: 0.8;
 }
 #neg {
     font-size: 14px;
