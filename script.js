@@ -1,7 +1,7 @@
 let digits = document.querySelector('#digits');
 let calculation = document.querySelector('#calculation');
 calculation.textContent="";
-let history = [];
+let history = [], log = [];
 
 function add(a,b){return a+b;}
 function subtract(a,b){return a-b;}
@@ -28,16 +28,13 @@ function writeNumber(btn){
         if(digits.textContent==0){
             digits.textContent=btn.id;
         }else{
-        digits.textContent += btn.id;
+            digits.textContent += btn.id;
         }
     }else{
         calculation.textContent = "";
         if(calculation!==''&&(digits.textContent>1||digits.textContent==='0')){
             digits.textContent = '';
         }
-        // }else if(calculation!==''&&digits.textContent==='0'){
-        //     digits.textContent = '';
-        // }
         digits.textContent += btn.id;   
     }
 }
@@ -61,40 +58,36 @@ function decimal(){
 function clearScreen(){
     digits.textContent = 0;
     calculation.textContent = 0;
+    log=[];
 }
 function clearAll(){
     digits.textContent = 0;
     calculation.textContent = '';
     history = [];
-}
-function addBtn(){
-    if(digits.textContent==='0'){return ;}
-    history.push(digits.textContent, '+');
-    calculation.textContent = '+';
-}
-function subtractBtn(){
-    if(digits.textContent==='0'){return ;}
-    history.push(digits.textContent, '-');
-    calculation.textContent = '-';
+    log = [];
 }
 function operation(symbol){
-    if(digits.textContent==='0'){return ;}
-    history.push(digits.textContent, symbol);
+    if(digits.textContent==='0'&&calculation.textContent===''){return ;}
+        log.push(digits.textContent, symbol);
+    if(digits.textContent==='0'&&!isNaN(Number(calculation.textContent))){
+        digits.textContent = log[-1];
+        log.push(digits.textContent, symbol);
+    }
     calculation.textContent = symbol;
+    if(symbol==='*'){calculation.textContent='X';}
 }
 function calculate(){
-    history.push(digits.textContent);
-    digits.textContent = 0;
+    log.push(digits.textContent);
     let total = 0;
-    for(let i=0; i<history.length; i++){
-        if(isNaN(history[i])){
-            total += operator(Number(history[i-1]), Number(history[i+1]), history[i]);
-        }
-        if(i%2!=0){
-            
+    console.log(log);
+    for(let i=0; i<log.length; i++){
+        if(isNaN(log[i])){
+            total += operator(Number(log[i-1]), Number(log[i+1]), log[i]);
         }
     }
-    calculation.textContent = total;
+    digits.textContent = total;
+    history.push(log);
+    log = [];
 }
 function calc(){
     let buttons = document.querySelectorAll('button');
@@ -108,7 +101,10 @@ function calc(){
             if(btn.id==='clearAll'){clearAll();}
             if(btn.id==='add'){operation('+');}
             if(btn.id==='subtract'){operation('-');}
+            if(btn.id==='multiply'){operation('*');}
+            if(btn.id==='divide'){operation('/');}
             if(btn.id==='equals'){calculate();}
+            console.log(log);
         });
     });
 }
