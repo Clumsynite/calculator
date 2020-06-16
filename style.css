@@ -2,6 +2,11 @@
     font-family: monospace;
     margin: 0px;
 }
+#calcBody {
+    display: grid;
+    grid-template-rows: 1fr 14fr;
+}
+
 button:focus {
     outline: none;
 }
@@ -9,6 +14,9 @@ button:focus {
     display: inline-block;
     background-color: grey;
     margin: 10px;
+    width: 240px;
+    height: 245px;
+
 }
 #numericButtons {
     display: grid;
@@ -19,17 +27,17 @@ button:focus {
     max-width: 560px;
     max-height: 720px;
 }
-.numberBtn {
+.numberBtn, .specialBtn {
     background-color: black;
     color: white;
     border: 1px solid grey;
     font-size: 20px;
     padding: 10px;
 }
-.numberBtn:hover {
+.numberBtn:hover, .specialBtn:hover, .editBtn:hover, .operateBtn:hover  {
     opacity: 0.6;
 }
-.numberBtn:active {
+.numberBtn:active, .specialBtn:active, .editBtn:active, .operateBtn:active {
     opacity: 0.8;
 }
 #editButtons {
@@ -46,26 +54,14 @@ button:focus {
     color: white;
     font-size: x-large;
 }
-.editBtn:hover {
-    opacity: 0.7;
-}
-.editBtn:active {
-    opacity: 0.8;
-}
 .operateBtn {
     background-color: #1f1f1f;
     color: white;
     font-size: x-large;
 }
-.operateBtn:hover {
-    opacity: 0.7;
-}
-.operateBtn:active {
-    opacity: 0.8;
-}
 #equals {
     background-color: #1461ff;
-    opacity: 0.75;
+    opacity: 0.5;
 }
 #equals:hover {
     opacity: 1;
@@ -75,4 +71,20 @@ button:focus {
 }
 #neg {
     font-size: 14px;
+}
+
+#displayScreen {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    width: 234px;
+    height: 50px;
+    border: 2px solid red;
+    margin: 12px;
+    margin-bottom: -10px;
+    justify-content: right;
+}
+#digits {
+    float: right;
+    font-size: 18px;
+    padding-right: 5px;
 }
