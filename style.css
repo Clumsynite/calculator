@@ -5,6 +5,11 @@
 #calcBody {
     display: grid;
     grid-template-rows: 1fr 14fr;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 10vh 10vw 10vh 10vw;
 }
 
 button:focus {
