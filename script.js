@@ -24,7 +24,8 @@ function operator(a,b,c){
 }
 
 function writeNumber(btn){
-    // if(btn.id==''){console.log(btn)}
+    
+    if(btn.code==='Space'){return;};
     if(btn.id===undefined){btn.id = btn.key;};
     if(digits.textContent.length<=10){
         if(calculation.textContent===""){
@@ -59,20 +60,13 @@ function decimal(){
 }
 
 function backSpace(){
-    if(digits.textContent.length>1){digits.textContent = (digits.textContent.substring(0,digits.textContent.length-1))} else{digits.textContent = 0};
+    if(digits.textContent.length>1){digits.textContent = (digits.textContent.substring(0,digits.textContent.length-1))} else {digits.textContent = 0};
 }
 function clearScreen(){
     digits.textContent = 0;
-    calculation.textContent = 0;
+    calculation.textContent = '';
     log=[];
 }
-function clearAll(){
-    digits.textContent = 0;
-    calculation.textContent = '';
-    history = [];
-    log = [];
-}
-
 function operation(symbol){
     if(digits.textContent==='0'&&calculation.textContent===''){return ;}
         log.push(digits.textContent, symbol);
@@ -90,7 +84,7 @@ function calculate(){
         for(let i=0; i<log.length; i++){
             if(isNaN(log[i])){
                 if(log[i]==='/'){
-                    log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+                   log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
                     log.splice(i,i+1);
                 }else if(log[i]==='*'){
                     log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
@@ -102,28 +96,25 @@ function calculate(){
                     log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
                     log.splice(i,i+1);
                 }
-
             }
-            
         }
-    }
-    if(log.length===1){    
-        digits.textContent = log.toString();
-        history.push(log);
-        log = [];
-    }
+    }    
+    digits.textContent = log;
+    history.push(log);
+    console.log(log);
+    log = [];
+    
 }
 
-function calc(){
+(function ( ){
     let buttons = document.querySelectorAll('button');
     buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('mousedown', () => {
             if((btn.id).length==1){writeNumber(btn);}  
             if(btn.id==='backspace'){backSpace();}  
             if(btn.id==='neg'){negative();}
             if(btn.id==='decimal'){decimal();}
             if(btn.id==='clearScreen'){clearScreen();}
-            if(btn.id==='clearAll'){clearAll();}
             if(btn.id==='add'){operation('+');}
             if(btn.id==='subtract'){operation('-');}
             if(btn.id==='multiply'){operation('*');}
@@ -131,11 +122,9 @@ function calc(){
             if(btn.id==='equals'){calculate();}
         });
     });
-}
-calc();
+}());
 
 document.addEventListener('keydown', function(event) {
-    console.log(event);
     if(!isNaN(Number(event.key))){writeNumber(event);}
     if(event.key==='Backspace'){backSpace();}
     if(event.key==='.'){decimal();}
