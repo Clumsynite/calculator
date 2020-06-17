@@ -1,19 +1,20 @@
 * {
-    font-family: monospace;  
-}
-#calcBody {
-    display: block;
-    width: fit-content;
-    margin: 4% 0px 0 10%;
+    font-family: monospace; 
+    box-sizing: border-box; 
 }
 body{
     text-align: center;
-    max-width: 100%;
-    max-height: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    background-color: #ededed;
+    margin-top: 30px;
+}
+#calcBody {
+    display: block;
+    width: fit-content;
+    margin: auto;
 }
 button:focus {
     outline: none;
@@ -96,10 +97,7 @@ button:focus {
     justify-self: end;
 }
 
-@media only screen and (max-width: 400px) {
-#calcBody{
-    margin-top: 10%;
-}    
+@media only screen and (max-width: 400px) {   
 #buttons {
     width: 240px;
     height: 245px;
