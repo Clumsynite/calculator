@@ -32,7 +32,7 @@ function writeNumber(btn){
         }
     }else{
         calculation.textContent = "";
-        if(calculation!==''&&(digits.textContent>1||digits.textContent==='0')){
+        if(calculation!==''&&(digits.textContent.length>=1||digits.textContent==='0')){
             digits.textContent = '';
         }
         digits.textContent += btn.id;   
@@ -78,16 +78,32 @@ function operation(symbol){
 }
 function calculate(){
     log.push(digits.textContent);
-    let total = 0;
-    console.log(log);
-    for(let i=0; i<log.length; i++){
-        if(isNaN(log[i])){
-            total += operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+    while(log.length>1){
+        for(let i=0; i<log.length; i++){
+            if(isNaN(log[i])){
+                if(log[i]==='/'){
+                    log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+                    log.splice(i,i+1);
+                }else if(log[i]==='*'){
+                    log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+                    log.splice(i,i+1);
+                }else if(log[i]==='+'){
+                    log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+                    log.splice(i,i+1);
+                }else if(log[i]==='-'){
+                    log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+                    log.splice(i,i+1);
+                }
+
+            }
+            
         }
     }
-    digits.textContent = total;
-    history.push(log);
-    log = [];
+    if(log.length===1){    
+        digits.textContent = log.toString();
+        history.push(log);
+        log = [];
+    }
 }
 function calc(){
     let buttons = document.querySelectorAll('button');
@@ -104,7 +120,6 @@ function calc(){
             if(btn.id==='multiply'){operation('*');}
             if(btn.id==='divide'){operation('/');}
             if(btn.id==='equals'){calculate();}
-            console.log(log);
         });
     });
 }
