@@ -24,23 +24,25 @@ function operator(a,b,c){
 }
 
 function writeNumber(btn){
-    if(digits.textContent.length<=10 && calculation.textContent===""){
-        if(digits.textContent==0){
-            digits.textContent=btn.id;
+    // if(btn.id==''){console.log(btn)}
+    if(btn.id===undefined){btn.id = btn.key;};
+    if(digits.textContent.length<=10){
+        if(calculation.textContent===""){
+            if(digits.textContent==0){
+                digits.textContent=btn.id;
+            }else{
+                digits.textContent += btn.id;
+            }
         }else{
+            calculation.textContent = "";
+            if(calculation!==''&&(digits.textContent.length>=1||digits.textContent==='0')){
+                digits.textContent = '';
+            }
             digits.textContent += btn.id;
         }
-    }else{
-        calculation.textContent = "";
-        if(calculation!==''&&(digits.textContent.length>=1||digits.textContent==='0')){
-            digits.textContent = '';
-        }
-        digits.textContent += btn.id;   
     }
 }
-function backSpace(){
-    if(digits.textContent.length>1){digits.textContent = (digits.textContent.substring(0,digits.textContent.length-1))} else{digits.textContent = 0};
-}
+
 function negative(){
     if(digits.textContent.startsWith('-')){
         digits.textContent = digits.textContent.replace('-','');
@@ -55,6 +57,10 @@ function decimal(){
         digits.textContent =digits.textContent + '.';
     }
 }
+
+function backSpace(){
+    if(digits.textContent.length>1){digits.textContent = (digits.textContent.substring(0,digits.textContent.length-1))} else{digits.textContent = 0};
+}
 function clearScreen(){
     digits.textContent = 0;
     calculation.textContent = 0;
@@ -66,6 +72,7 @@ function clearAll(){
     history = [];
     log = [];
 }
+
 function operation(symbol){
     if(digits.textContent==='0'&&calculation.textContent===''){return ;}
         log.push(digits.textContent, symbol);
@@ -76,6 +83,7 @@ function operation(symbol){
     calculation.textContent = symbol;
     if(symbol==='*'){calculation.textContent='X';}
 }
+
 function calculate(){
     log.push(digits.textContent);
     while(log.length>1){
@@ -105,6 +113,7 @@ function calculate(){
         log = [];
     }
 }
+
 function calc(){
     let buttons = document.querySelectorAll('button');
     buttons.forEach(btn => {
@@ -124,3 +133,15 @@ function calc(){
     });
 }
 calc();
+
+document.addEventListener('keydown', function(event) {
+    console.log(event);
+    if(!isNaN(Number(event.key))){writeNumber(event);}
+    if(event.key==='Backspace'){backSpace();}
+    if(event.key==='.'){decimal();}
+    if(event.key==='+'){operation('+');}
+    if(event.key==='-'){operation('-');}
+    if(event.key==='*'){operation('*');}
+    if(event.key==='/'){operation('/');}
+    if(event.key==='Enter'||event.key==='='){calculate();}
+});
