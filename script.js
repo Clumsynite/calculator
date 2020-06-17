@@ -133,4 +133,5 @@ document.addEventListener('keydown', function(event) {
     if(event.key==='*'){operation('*');}
     if(event.key==='/'){operation('/');}
     if(event.key==='Enter'||event.key==='='){calculate();}
+    if(event.code==='KeyC'){clearScreen();}
 });
