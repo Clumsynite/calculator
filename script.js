@@ -29,7 +29,7 @@ function writeNumber(btn){
     if(btn.id===undefined){btn.id = btn.key;};
     if(digits.textContent.length<=10){
         if(calculation.textContent===""){
-            if(digits.textContent==0){
+            if(digits.textContent==0 && !digits.textContent.endsWith('.')){
                 digits.textContent=btn.id;
             }else{
                 digits.textContent += btn.id;
@@ -55,7 +55,7 @@ function decimal(){
     if(digits.textContent.endsWith('.')){
         digits.textContent = digits.textContent.replace('.','');
     }else if(digits.textContent.indexOf('.')<1){
-        digits.textContent =digits.textContent + '.';
+        digits.textContent = digits.textContent + '.';
     }
 }
 
@@ -84,8 +84,13 @@ function calculate(){
         for(let i=0; i<log.length; i++){
             if(isNaN(log[i])){
                 if(log[i]==='/'){
-                   log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
-                    log.splice(i,i+1);
+                    if(log[i+1]==="0"){
+                        log[i-1] = "Are you trying to test me"
+                        log.splice(i,i+1);
+                    }else {   
+                        log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
+                        log.splice(i,i+1);   
+                    }
                 }else if(log[i]==='*'){
                     log[i-1] = operator(Number(log[i-1]), Number(log[i+1]), log[i]);
                     log.splice(i,i+1);
