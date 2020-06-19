@@ -69,7 +69,7 @@ function clearScreen(){
     log=[];
 }
 function operation(symbol){
-    if(digits.textContent==='0'&&calculation.textContent===''){return ;}
+    if((digits.textContent==='0'&&calculation.textContent==='')||digits.textContent.length>10){return ;}
         log.push(digits.textContent, symbol);
     if(digits.textContent==='0'&&!isNaN(Number(calculation.textContent))){
         digits.textContent = log[-1];
