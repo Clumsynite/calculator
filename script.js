@@ -1,7 +1,7 @@
 let digits = document.querySelector('#digits');
 let calculation = document.querySelector('#calculation');
 calculation.textContent="";
-let history = [], log = [];
+let history = [], log = [], c = [];
 
 function add(a,b){return a+b;}
 function subtract(a,b){return a-b;}
@@ -28,7 +28,7 @@ function writeNumber(btn){
     if(btn.code==='Space'){return;};
     if(btn.id===undefined){btn.id = btn.key;};
     if(digits.textContent.length<=10){
-        if(calculation.textContent===""){
+        if(calculation.textContent===""&&c.length===0){
             if(digits.textContent==0 && !digits.textContent.endsWith('.')){
                 digits.textContent=btn.id;
             }else{
@@ -38,6 +38,7 @@ function writeNumber(btn){
             calculation.textContent = "";
             if(calculation!==''&&(digits.textContent.length>=1||digits.textContent==='0')){
                 digits.textContent = '';
+                c=[];
             }
             digits.textContent += btn.id;
         }
@@ -106,9 +107,8 @@ function calculate(){
     }    
     digits.textContent = log;
     history.push(log);
-    console.log(log);
     log = [];
-    
+    c[0] = 1;
 }
 
 (function ( ){
