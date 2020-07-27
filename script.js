@@ -26,13 +26,13 @@ function operator(a,b,c){
 function writeNumber(btn){
     
     if(btn.code==='Space'){return;};
-    if(btn.id===undefined){btn.id = btn.key;};
+    if(btn.value===undefined){btn.value = btn.key;};
     if(digits.textContent.length<=10){
         if(calculation.textContent===""&&c.length===0){
             if(digits.textContent==0 && !digits.textContent.endsWith('.')){
-                digits.textContent=btn.id;
+                digits.textContent=btn.value;
             }else{
-                digits.textContent += btn.id;
+                digits.textContent += btn.value;
             }
         }else{
             calculation.textContent = "";
@@ -40,7 +40,7 @@ function writeNumber(btn){
                 digits.textContent = '';
                 c=[];
             }
-            digits.textContent += btn.id;
+            digits.textContent += btn.value;
         }
     }
 }
@@ -115,7 +115,7 @@ function calculate(){
     let buttons = document.querySelectorAll('button');
     buttons.forEach(btn => {
         btn.addEventListener('mousedown', () => {
-            if((btn.id).length==1){writeNumber(btn);}  
+            if((btn.value).length==1){writeNumber(btn);}  
             if(btn.id==='backspace'){backSpace();}  
             if(btn.id==='neg'){negative();}
             if(btn.id==='decimal'){decimal();}
