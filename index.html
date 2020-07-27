@@ -12,37 +12,36 @@
     <title>Calculator</title>
 </head>
 <body>
+  <div id="app">
     <div id="calcBody">
         <div id="displayScreen">
             <div id="digits">0</div>
             <div id="calculation">00</div>
         </div>
         <div id="buttons">
-            <div id="editButtons">
                 <button class="editBtn" id="clearScreen">C</button>
                 <button class="editBtn" id="backspace"><i class="material-icons">backspace</i></button>
                 <button class="operateBtn" id="divide">/</button>
-            </div>
-            <div id="numericButtons">
-                <button class="numberBtn" id="7">7</button>
-                <button class="numberBtn" id="8">8</button>
-                <button class="numberBtn" id="9">9</button>
+                <button class="numberBtn" value="7" id="seven">7</button>
+                <button class="numberBtn" value="8" id='eight'>8</button>
+                <button class="numberBtn" value="9" id="nine">9</button>
                 <button class="operateBtn" id="multiply"><i class="material-icons">clear</i></button>
-                <button class="numberBtn" id="4">4</button>
-                <button class="numberBtn" id="5">5</button>
-                <button class="numberBtn" id="6">6</button>
+                <button class="numberBtn" value="4" id="four">4</button>
+                <button class="numberBtn" value="5" id='five'>5</button>
+                <button class="numberBtn" value="6" id='six'>6</button>
                 <button class="operateBtn" id="subtract">-</button>
-                <button class="numberBtn" id="1">1</button>
-                <button class="numberBtn" id="2">2</button>
-                <button class="numberBtn" id="3">3</button>
+                <button class="numberBtn" value="1" id='one'>1</button>
+                <button class="numberBtn" value="2" id='two'>2</button>
+                <button class="numberBtn" value="3" id='three'>3</button>
                 <button class="operateBtn" id="add">+</button>
                 <button class="specialBtn" id="neg">+/-</button>
-                <button class="numberBtn" id="0">0</button>
+                <button class="numberBtn" value="0" id='zero'>0</button>
                 <button class="specialBtn" id="decimal">.</button>
                 <button class="operateBtn" id="equals">=</button>
             </div>
         </div>
     </div>
+  </div>
     <script src="script.js"></script>
 </body>
 </html>
