@@ -1,36 +1,41 @@
-* {
-    font-family: monospace; 
-    box-sizing: border-box; 
-}
 body{
-    text-align: center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background-color: #ededed;
-    margin-top: 30px;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+#app {
+  height: 100%;
+  display: grid;
 }
 #calcBody {
-    display: block;
-    width: fit-content;
-    margin: auto;
+    margin: 3% auto;
+    width: 400px;
+}
+#displayScreen {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 400px;
+  height: 100px;
+  background-color: #a6a6a6;
+  color: white;
 }
 button:focus {
     outline: none;
 }
 #buttons {
-    display: inline-block;
-    background-color: #cccccc;
-    width: 480px;
-    height: 490px;
-}
-#numericButtons {
     display: grid;
+    background-color: #cccccc;
+    width: 400px;
+    height: 500px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows:auto;
-    width: 480px;
-    height: 400px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "clear clear backspace divide"
+      "seven eight nine multiply"
+      "four five six subtract"
+      "one two three add"
+      "neg zero decimal equals";
 }
 .numberBtn, .specialBtn {
     background-color: black;
@@ -44,13 +49,6 @@ button:focus {
 }
 .numberBtn:active, .specialBtn:active, .editBtn:active, .operateBtn:active {
     opacity: 0.8;
-}
-#editButtons {
-    margin: 0px;
-    display: grid;
-    grid-template-columns: 1.5fr 1.5fr 1fr;
-    width: 480px;
-    height: 90px;
 }
 .editBtn {
     background-color: #1f1f1f;
@@ -67,6 +65,7 @@ button:focus {
 #equals {
     background-color: #1461ff;
     opacity: 0.5;
+    grid-area: equals;
 }
 #equals:hover {
     opacity: 1;
@@ -76,15 +75,7 @@ button:focus {
 }
 #neg {
     font-size: 14px;
-}
-
-#displayScreen {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    width: 480px;
-    height: 100px;
-    background-color: #a6a6a6;
-    color: white;
+    grid-area: neg;
 }
 #digits {
     font-size: 40px;
@@ -96,29 +87,73 @@ button:focus {
     padding-right: 20px;
     justify-self: end;
 }
+#clearScreen {
+  grid-area: clear;
+}
+#zero {
+  grid-area: zero;
+}
+#one {
+  grid-area: one;
+}
+#two {
+  grid-area: two;
+}
+#three {
+  grid-area: three;
+}
+#four {
+  grid-area: four;
+}
+#five {
+  grid-area: five;
+}
+#six {
+  grid-area: six;
+}
+#seven {
+  grid-area: seven;
+}
+#eight {
+  grid-area: eight;
+}
+#nine{
+  grid-area: nine;
+}
+#decimal {
+  grid-area: decimal;
+}
+#add {
+  grid-area: add;
+}
+#subtract {
+  grid-area: subtract;
+}
+#multiply {
+  grid-area: multiply;
+}
+#divide {
+  grid-area: divide;
+}
+#backspace {
+  grid-area: backspace;
+}
 
-@media only screen and (max-width: 400px) {   
-#buttons {
-    width: 240px;
-    height: 245px;
-}
-#numericButtons {
-    width: 240px;
-    height: 200px;
-}
-#editButtons {
-    width: 240px;
-    height: 45px;
-}
-
-#displayScreen {
-    width: 240px;
-    height: 50px;
-}
-#digits {
-    font-size: 20px;
-}
-#calculation {
-    font-size: 10px;
-}
+@media screen and (max-width: 720px){
+  #app {
+    height: 100vh;
+    width: 100vw;
+  }
+  #calcBody {
+    width: 95vw;
+    margin: 2% auto;
+  }
+  #displayScreen {
+    height: 15vh;
+    width: 95vw;
+  }
+  #buttons {
+    height: 80vh;
+    width: 95vw
+  }
 }
